@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { getContacts, createContact } from "../contacts";
 import { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 
 export async function action() {
     const contact = await createContact();
@@ -42,6 +43,44 @@ export default function Root() {
       <>
         <div id="sidebar">
           <h1>React Router Contacts</h1>
+          <div>
+            <button type="button" onClick={() => {
+              console.log('DESKTOP onClick');
+              // Send pageview with a custom path
+              ReactGA.send({ hitType: "DESKTOP pageview", page: "/my-path-DESKTOP" });
+
+              // Send a custom event
+              ReactGA.event({
+                category: "DESKTOP category",
+                action: "DESKTOP action",
+                label: "DESKTOP label", // optional
+                value: 99, // optional, must be a number
+                nonInteraction: true, // optional, true/false
+                transport: "xhr", // optional, beacon/xhr/image
+              });
+            }}
+            >
+              DESKTOP
+            </button>
+            <button type="button" onClick={() => {
+              console.log('MOBILE onClick');
+              // Send pageview with a custom path
+              ReactGA.send({ hitType: "MOBILE pageview", page: "/my-path-MOBILE" });
+
+              // Send a custom event
+              ReactGA.event({
+                category: "MOBILE category",
+                action: "MOBILE action",
+                label: "MOBILE label", // optional
+                value: 99, // optional, must be a number
+                nonInteraction: true, // optional, true/false
+                transport: "xhr", // optional, beacon/xhr/image
+              });
+            }}
+            >
+              MOBILE
+            </button>
+          </div>
           <div>
             <Form id="search-form" role="search">
               <input

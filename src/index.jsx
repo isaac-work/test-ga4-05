@@ -22,6 +22,21 @@ import EditContact, {
 } from "./routes/edit";
 import { action as destroyAction } from "./routes/destroy";
 import Index from "./routes/index";
+import ReactGA from "react-ga4";
+
+ReactGA.initialize([
+  {
+    trackingId: "G-BF3NGWKMSV",
+    gaOptions: {
+      debug_mode: true,
+    },
+    gtagOptions: {
+      debug_mode: true,
+    },
+  },
+]);
+
+ReactGA.send("Hello pageview!");
 
 const router = createHashRouter(
   createRoutesFromElements(
